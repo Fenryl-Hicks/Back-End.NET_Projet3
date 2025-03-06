@@ -17,10 +17,10 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
 
         [Required(ErrorMessage = "MissingStock")]
         [Range(1, int.MaxValue, ErrorMessage = "StockNotGreaterThanZero")]
-        public string Stock { get; set; }
+        public int Stock { get; set; }
 
         [Required(ErrorMessage = "MissingPrice")]
         [Range(0.01, double.MaxValue, ErrorMessage = "PriceNotGreaterThanZero")]
-        public string Price { get; set; }
+        public double Price { get; set; }
     }
 }
