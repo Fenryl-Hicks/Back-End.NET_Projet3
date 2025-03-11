@@ -108,20 +108,22 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             _mockProductRepository.Verify(repo => repo.SaveProduct(It.IsAny<Product>()), Times.Once);
         }
 
-        //[Fact]
-        //public void DeleteProduct_ShouldRemoveFromCartAndRepository()
-        //{
-        //    // Arrange
-        //    var product = new Product { Id = 1, Name = "Product", Price = 10.0, Quantity = 5 };
-        //    _mockProductRepository.Setup(repo => repo.GetAllProducts()).Returns(new List<Product> { product });
-        //    _mockCart.Setup(cart => cart.Lines).Returns(new List<CartLine> { new CartLine { Product = product, Quantity = 1 } });
+        [Fact]
+        public void DeleteProduct_ShouldRemoveFromCartAndRepository()
+        {
+            // Arrange
+            var product = new Product { Id = 1, Name = "Product", Price = 10.0, Quantity = 5 };
+            _mockProductRepository.Setup(repo => repo.GetAllProducts()).Returns(new List<Product> { product });
+            //_mockCart.Setup(cart => cart.RemoveLine(product).Returns(new List<CartLine> { new CartLine { Product = product, Quantity = 1 } });
+            _mockCart.Setup(cart => cart.AddItem(product, 1));
 
-        //    // Act
-        //    _productService.DeleteProduct(1);
+            // Act
+            
+            _productService.DeleteProduct(product.Id);
 
-        //    // Assert
-        //    _mockCart.Verify(cart => cart.RemoveLine(It.IsAny<Product>()), Times.Once);
-        //    _mockProductRepository.Verify(repo => repo.DeleteProduct(1), Times.Once);
-        //}
+            // Assert
+            _mockCart.Verify(cart => cart.RemoveLine(It.IsAny<Product>()), Times.Once);
+            _mockProductRepository.Verify(repo => repo.DeleteProduct(1), Times.Once);
+        }
     }
 }

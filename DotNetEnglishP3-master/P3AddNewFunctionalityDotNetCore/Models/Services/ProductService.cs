@@ -124,12 +124,12 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
                 throw new InvalidOperationException("Product not found");
             }
 
-            Cart cart = (Cart)_cart;
-            var cartItem = cart.Lines.FirstOrDefault(l => l.Product.Id == id);
-            if (cartItem != null)
-            {
-                _cart.RemoveLine(cartItem.Product);
-            }
+            //Cart cart = (Cart)_cart;
+            //var cartItem = _cart.Lines.Where(l => l.Product.Id == id);
+            //if (cartItem != null)
+           // {
+                _cart.RemoveLine(product);
+            //}
 
             _productRepository.DeleteProduct(id);
         }
