@@ -22,7 +22,6 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             var errors = ValidateModel(model);
             Assert.Contains(errors, v => v.ErrorMessage.Contains("MissingName"));
         }
-
       
         [Fact]
         public void ProductViewModel_ShouldHaveError_WhenPriceIsNotGreaterThanZero()
@@ -30,9 +29,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             var model = new ProductViewModel { Name = "Valid Name", Price = 0, Stock = 5 };
             var errors = ValidateModel(model);
             Assert.Contains(errors, v => v.ErrorMessage.Contains("PriceNotGreaterThanZero"));
-        }
-
-     
+        }     
 
         [Fact]
         public void ProductViewModel_ShouldHaveError_WhenStockIsNotGreaterThanZero()

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
@@ -124,12 +123,8 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
                 throw new InvalidOperationException("Product not found");
             }
 
-            //Cart cart = (Cart)_cart;
-            //var cartItem = _cart.Lines.Where(l => l.Product.Id == id);
-            //if (cartItem != null)
-           // {
-                _cart.RemoveLine(product);
-            //}
+            _cart.RemoveLine(product);
+            
 
             _productRepository.DeleteProduct(id);
         }

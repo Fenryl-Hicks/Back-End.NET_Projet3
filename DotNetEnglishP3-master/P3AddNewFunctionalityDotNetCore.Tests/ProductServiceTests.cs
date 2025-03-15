@@ -7,7 +7,6 @@ using P3AddNewFunctionalityDotNetCore.Models.Entities;
 using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using Microsoft.Extensions.Localization;
 using System.ComponentModel.DataAnnotations;
-using System;
 using P3AddNewFunctionalityDotNetCore.Models;
 
 namespace P3AddNewFunctionalityDotNetCore.Tests
@@ -33,9 +32,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
                 _mockOrderRepository.Object,
                 _mockLocalizer.Object
             );
-        }
-
-        
+        }        
 
         [Fact]
         public void GetAllProductsViewModel_ShouldReturn_ProductViewModelList()
@@ -114,11 +111,9 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             // Arrange
             var product = new Product { Id = 1, Name = "Product", Price = 10.0, Quantity = 5 };
             _mockProductRepository.Setup(repo => repo.GetAllProducts()).Returns(new List<Product> { product });
-            //_mockCart.Setup(cart => cart.RemoveLine(product).Returns(new List<CartLine> { new CartLine { Product = product, Quantity = 1 } });
             _mockCart.Setup(cart => cart.AddItem(product, 1));
 
-            // Act
-            
+            // Act            
             _productService.DeleteProduct(product.Id);
 
             // Assert
