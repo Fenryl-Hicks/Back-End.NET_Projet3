@@ -11,8 +11,8 @@ namespace P3AddNewFunctionalityDotNetCore.Data
     {
         public static void Initialize(IServiceProvider serviceProvider, IConfiguration config)
         {
-            using var context = new P3Referential(
-                serviceProvider.GetRequiredService<DbContextOptions<P3Referential>>(), config);
+            using var scope = serviceProvider.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<P3Referential>();
 
             if (context.Product.Any())
             {
@@ -61,6 +61,7 @@ namespace P3AddNewFunctionalityDotNetCore.Data
                }
             );
             context.SaveChanges();
+
         }
     }
 }
